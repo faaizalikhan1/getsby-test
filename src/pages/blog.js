@@ -1,18 +1,49 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { graphql } from 'graphql'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const Blog = () => (
+class Blog extends React.Component {
 
-  <Layout>
-    <SEO title="Surf Status Blog" />
-    <h1>Hi, this is the blog </h1>
-    <p>Welcome to page the blog, here is where the blog posts will be displayed</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
-
+  render(){
+    const blogs = this.props.data.allContentfulGetsbyTest.edges
+    console.log(blogs)
+    return(
+      <Layout>
+        <SEO title="Surf Status Blog" />
+        <h1>Hi, this is the blog </h1>
+        { 
+          blogs.map((blog)=>{
+            let b = blog.node
+            console.log('----blog', blog)
+            return(
+              <div>
+                  <h4>{ b.firstname }</h4>
+                  <p>{ b.age }</p>
+                  <Link to={`/blog/${b.firstname.replace(' ','-').replace(' ','-')}/`}>Go to post</Link>
+              </div>
+            )
+          })
+        }
+      </Layout>
+    )
+  }
+}
 export default Blog
+
+export const Posts = graphql`
+    query Posts 
+      {
+        allContentfulGetsbyTest {
+          edges {
+            node {
+              id
+              firstname
+              age
+            }
+          }
+        }
+      }
+`
