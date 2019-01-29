@@ -1,13 +1,10 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
+import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
 import SEO from '../components/seo'
 
-
-const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
 const IndexPage = () => (
   <Layout>
@@ -25,17 +22,3 @@ const IndexPage = () => (
 
 export default IndexPage
 
-
-export const pageQuery = graphql`
-  query HomeQuery {
-  allContentfulBlogPost {
-    edges {
-      node {
-        id
-        title
-        slug
-      }
-    }
-  }
-  }
-`

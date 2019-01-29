@@ -4,12 +4,16 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-
+const slugify = require(`slugify`)
+const slugifyOptions = {
+  replacement: '-',
+  remove: /[$*_+~.()'"!\-:@]/g,
+  lower: true
+}
 class Blog extends React.Component {
 
   render(){
     const blogs = this.props.data.allContentfulGetsbyTest.edges
-    console.log(blogs)
     return(
       <Layout>
         <SEO title="Surf Status Blog" />
@@ -17,12 +21,11 @@ class Blog extends React.Component {
         { 
           blogs.map((blog, i)=>{
             let b = blog.node
-            console.log('----blog', blog)
             return(
               <div key={i}>
-                  <h4>{ b.firstname }</h4>
-                  <p>{ b.age }</p>
-                  <Link to={`/blog/${b.firstname.replace(' ','-').replace(' ','-')}/`}>Go to post</Link>
+                  <p><b>{ b.firstname }</b> <br/>
+                  <Link to={`/blog/${slugify(b.firstname, slugifyOptions)}`}>Go to post</Link>   
+                  </p>
               </div>
             )
           })
