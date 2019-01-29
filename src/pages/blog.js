@@ -15,11 +15,11 @@ class Blog extends React.Component {
         <SEO title="Surf Status Blog" />
         <h1>Hi, this is the blog </h1>
         { 
-          blogs.map((blog)=>{
+          blogs.map((blog, i)=>{
             let b = blog.node
             console.log('----blog', blog)
             return(
-              <div>
+              <div key={i}>
                   <h4>{ b.firstname }</h4>
                   <p>{ b.age }</p>
                   <Link to={`/blog/${b.firstname.replace(' ','-').replace(' ','-')}/`}>Go to post</Link>

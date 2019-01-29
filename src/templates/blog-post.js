@@ -13,7 +13,6 @@ const propTypes = {
 class BlogPost extends React.Component{
  render(){
     const page = this.props.data.contentfulGetsbyTest
-    console.log('PAGWE DADAFAT', page)
 
     return(
         <div>
