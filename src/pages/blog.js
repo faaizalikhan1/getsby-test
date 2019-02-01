@@ -16,7 +16,7 @@ class Blog extends React.Component {
     const blogs = this.props.data.allContentfulGetsbyTest.edges
     return(
       <Layout>
-        <SEO title="Surf Status Blog" />
+        <SEO title="Surf Status Blog" description="Welcome to the Surf Status Blog. Created with GatsbyJs" image="https://cranky-mayer-85efc7.netlify.com/static/6d91c86c0fde632ba4cd01062fd9ccfa/045aa/gatsby-astronaut.png" />
         <h1>Hi, this is the blog </h1>
         { 
           blogs.map((blog, i)=>{
@@ -30,6 +30,7 @@ class Blog extends React.Component {
             )
           })
         }
+          <Link to="/">Go back to the homepage</Link>
       </Layout>
     )
   }
